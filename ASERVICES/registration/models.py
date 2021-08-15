@@ -1,9 +1,7 @@
 from django.db import models
 
 # Create your models here.
-GENDER= [('M', 'male'), ('F', 'female')]
-OPTION= [('Yes', 'Yes'), ('No', 'No')]
-MODE= [('Alone', 'ALONE'), ('Team', 'TEAM')]
+
 def file_location(instance, filename):
     if instance.other_name:
         return "{} {} {}/WorkEvidence/{}".format(instance.last_name, instance.first_name, instance.other_name, filename)

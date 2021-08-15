@@ -11,15 +11,16 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary_storage
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+from .secret_settings import SECRET_KEY
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d8h%5h)+t^67fzulsu1wm@9ynfvll0q0s11f)27m@l7%c7nz^n'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration'
+    'registration',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +82,9 @@ DATABASES = {
     }
 }
 
-
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -127,3 +131,11 @@ MEDIA_ROOT= BASE_DIR/ "media"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME' : 'mubarakoke',
+    'API_KEY' : '727963743176788',
+    'API_SECRET' : 'gJT8NFT-9c0R_CDqrcfXsNQwsEk'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

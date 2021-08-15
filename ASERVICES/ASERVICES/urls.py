@@ -22,7 +22,6 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    url('^$', views.index, name='index'),
     url('admin/', admin.site.urls),
     url('Landing/', views.landing, name='landing'),
     url('register/', include('registration.urls')),
